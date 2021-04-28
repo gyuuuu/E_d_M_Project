@@ -6,6 +6,10 @@ import {
   createProductOutput,
 } from './dtos/create-product.dto';
 import { getAllProductOutput } from './dtos/get-product.dto';
+import {
+  updateProductInput,
+  updateProductOutput,
+} from './dtos/update-product.dto';
 import { product } from './entites/product.entity';
 
 @Injectable()
@@ -31,5 +35,14 @@ export class ProductService {
     });
     const insertRes = await this.productRepository.insert(product);
     return <createProductOutput>insertRes.identifiers[0];
+  }
+
+  async updateProduct({
+    product_id,
+    expired_data,
+  }: updateProductInput): Promise<updateProductOutput> {
+    const product = await this.productRepository.findOne({ product_id });
+    product.expired_data = expired_data;
+    return await this.productRepository.save(product);
   }
 }
