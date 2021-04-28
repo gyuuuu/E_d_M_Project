@@ -1,3 +1,5 @@
+import { product } from 'src/product/entites/product.entity';
+
 export function ormConfig(): any {
   return {
     type: 'mysql',
@@ -6,7 +8,7 @@ export function ormConfig(): any {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    entities: [],
+    entities: [product],
     synchronize: process.env.NODE_ENV !== 'prod',
     logging: process.env.NODE_ENV !== 'prod' && process.env.NODE_ENV !== 'test',
   };

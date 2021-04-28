@@ -3,7 +3,8 @@ import * as Joi from 'joi';
 export function envConfig() {
   return {
     isGlobal: true,
-    envFilePath: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env.prod',
+    envFilePath:
+      process.env.NODE_ENV === 'dev' ? 'config/.env.dev' : 'config/.env.prod',
     validationSchema: Joi.object({
       NODE_ENV: Joi.string().valid('dev', 'prod', 'test').required(),
       DB_HOST: Joi.string().required(),
