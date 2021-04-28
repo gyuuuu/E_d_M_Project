@@ -8,8 +8,8 @@ import { AppService } from './app.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(ormConfig()),
     ConfigModule.forRoot(envConfig()),
+    TypeOrmModule.forRoot(ormConfig()),
   ],
   controllers: [AppController],
   providers: [AppService],
