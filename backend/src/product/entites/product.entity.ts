@@ -1,6 +1,7 @@
 import { IsDate, IsString } from 'class-validator';
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity()
 export class product {
   @PrimaryGeneratedColumn()
   product_id: number;
