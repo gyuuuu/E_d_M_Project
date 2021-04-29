@@ -11,6 +11,7 @@ import {
   createProductInput,
   createProductOutput,
 } from './dtos/create-product.dto';
+import { deleteProductOutput } from './dtos/delete-product.dto';
 import { getAllProductOutput } from './dtos/get-product.dto';
 import {
   updateProductInput,
@@ -43,8 +44,10 @@ export class ProductController {
     return await this.productService.updateProduct(updateProduct);
   }
 
-  // @Delete()
-  // async deleteProduct(): Promise<deleteProductOutput> {
-  //   return await this.productService.deleteProduct();
-  // }
+  @Delete(':product_id')
+  async deleteProduct(
+    @Param('product_id') product_id: number,
+  ): Promise<deleteProductOutput> {
+    return await this.productService.deleteProduct(product_id);
+  }
 }

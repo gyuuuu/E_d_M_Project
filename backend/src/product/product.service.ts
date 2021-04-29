@@ -5,6 +5,7 @@ import {
   createProductInput,
   createProductOutput,
 } from './dtos/create-product.dto';
+import { deleteProductOutput } from './dtos/delete-product.dto';
 import { getAllProductOutput } from './dtos/get-product.dto';
 import {
   updateProductInput,
@@ -44,5 +45,12 @@ export class ProductService {
     const product = await this.productRepository.findOne({ product_id });
     product.expired_date = expired_date;
     return await this.productRepository.save(product);
+  }
+
+  async deleteProduct(product_id: number): Promise<deleteProductOutput> {
+    const deleteResult = await this.productRepository.delete({ product_id });
+    return Object.assign({
+      affected: deleteResult.affected,
+    });
   }
 }
