@@ -38,10 +38,10 @@ export class ProductService {
   }
 
   async updateProduct({
-    product_name,
+    product_id,
     expired_date,
   }: updateProductInput): Promise<updateProductOutput> {
-    const product = await this.productRepository.findOne({ product_name });
+    const product = await this.productRepository.findOne({ product_id });
     product.expired_date = expired_date;
     return await this.productRepository.save(product);
   }
