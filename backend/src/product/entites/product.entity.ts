@@ -1,4 +1,4 @@
-import { IsDate, IsString } from 'class-validator';
+import { IsDateString, IsString } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -10,7 +10,7 @@ export class product {
   @IsString()
   product_name: string;
 
-  @Column({ type: 'date' })
-  @IsDate()
-  expired_data: string;
+  @Column({ type: Date })
+  @IsDateString()
+  expired_date: Date;
 }

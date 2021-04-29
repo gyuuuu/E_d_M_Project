@@ -21,28 +21,28 @@ export class ProductService {
 
   async findAll(): Promise<getAllProductOutput[]> {
     return await this.productRepository.find({
-      order: { expired_data: 'DESC' },
+      order: { expired_date: 'DESC' },
     });
   }
 
   async createProduct({
     product_name,
-    expired_data,
+    expired_date,
   }: createProductInput): Promise<createProductOutput> {
     const product = await this.productRepository.create({
       product_name,
-      expired_data,
+      expired_date,
     });
     const insertRes = await this.productRepository.insert(product);
     return <createProductOutput>insertRes.identifiers[0];
   }
 
   async updateProduct({
-    product_id,
-    expired_data,
+    product_name,
+    expired_date,
   }: updateProductInput): Promise<updateProductOutput> {
-    const product = await this.productRepository.findOne({ product_id });
-    product.expired_data = expired_data;
+    const product = await this.productRepository.findOne({ product_name });
+    product.expired_date = expired_date;
     return await this.productRepository.save(product);
   }
 }
